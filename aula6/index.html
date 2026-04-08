@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercícios</title>
+</head>
+<body>
+    <script> 
+let infoName = prompt("Digite seu nome completo:");
+resultado = ""
+resultado += `O seu nome é: ${infoName}<br/>`
+resultado += `Seu nome tem ... letras<br/>`
+resultado += `A segunda letra do seu nome é: <br/>`
+resultado += `Qual o primeiro índice da letra LETRA no seu nome?<br/>`
+resultado += `Qual o último índice da letra LETRA no seu nome?<br/>`
+resultado += `As últimas 3 letras do seu nome são:<br/>`
+resultado += `As palavras do seu nome são:<br/>`
+const nameUpper = infoName.toUpperCase(); 
+resultado += `Seu nome com letras maiúsculas: ${nameUpper} <br/>`
+resultado += `Seu nome com letras minúsculas: <br/>`
+document.body.innerHTML = resultado</script>
+</body>
+</html>
