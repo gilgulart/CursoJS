@@ -8,17 +8,35 @@
 <body>
     <script> 
 let infoName = prompt("Digite seu nome completo:");
-resultado = ""
-resultado += `O seu nome é: ${infoName}<br/>`
-resultado += `Seu nome tem ... letras<br/>`
-resultado += `A segunda letra do seu nome é: <br/>`
-resultado += `Qual o primeiro índice da letra LETRA no seu nome?<br/>`
-resultado += `Qual o último índice da letra LETRA no seu nome?<br/>`
-resultado += `As últimas 3 letras do seu nome são:<br/>`
-resultado += `As palavras do seu nome são:<br/>`
+resultado = "";
+resultado += `O seu nome é: ${infoName}<br/>`;
+
+const countLetters = infoName.replace(/[^a-zA-Z]/g, "").length;
+resultado += `Seu nome tem ${countLetters} letras<br/>`;
+
+const secondLetter = infoName[1];
+resultado += `A segunda letra do seu nome é: ${secondLetter} <br/>`;
+
+const firstIndex = infoName.indexOf(secondLetter);
+resultado += `Qual o primeiro índice da letra ${secondLetter} no seu nome? ${firstIndex} <br/>`;
+
+
+const lastIndex = infoName.lastIndexOf(secondLetter);
+resultado += `Qual o último índice da letra ${secondLetter} no seu nome? ${lastIndex} <br/>`;
+
+const lastLetters = infoName.slice(-3) ;
+resultado += `As últimas 3 letras do seu nome são: ${lastLetters} <br/>`;
+
+const splitName = infoName.split(" ").length;
+resultado += `As palavras do seu nome são: ${splitName} <br/>`;
+
 const nameUpper = infoName.toUpperCase(); 
-resultado += `Seu nome com letras maiúsculas: ${nameUpper} <br/>`
-resultado += `Seu nome com letras minúsculas: <br/>`
-document.body.innerHTML = resultado</script>
+resultado += `Seu nome com letras maiúsculas: ${nameUpper} <br/>`;
+
+const nameLower = infoName.toLowerCase();
+resultado += `Seu nome com letras minúsculas: ${nameLower} <br/>`;
+
+document.body.innerHTML = resultado;
+</script>
 </body>
 </html>
