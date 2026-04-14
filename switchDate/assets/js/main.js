@@ -1,4 +1,4 @@
-const date = new Date(2019, 9, 7, 22, 52);
+const date = new Date(2026, 2, 5, 23, 59);
 
 function createH1() {
   const h = document.createElement("h1");
@@ -20,71 +20,53 @@ function getFullDate() {
   const month = date.getMonth();
   const day = date.getDate();
   const hours = date.getHours();
-  const minutes = date.getMinutes;
+  const minutes = date.getMinutes();
   const dayWeek = date.getDay();
 
   switch (month) {
     case 0:
-      return "janeiro";
-
+      monthName = "janeiro"; break;
     case 1:
-      return "fevereiro";
-
+      monthName = "fevereiro"; break;
     case 2:
-      return "março";
-
+      monthName = "março"; break;
     case 3:
-      return "abril";
-
+      monthName = "abril"; break;
     case 4:
-      return "maio";
-
+      monthName = "maio"; break;
     case 5:
-      return "junho";
-
+      monthName = "junho"; break;
     case 6:
-      return "julho";
+      monthName = "julho"; break;
     case 7:
-      return "agosto";
+      monthName = "agosto"; break;
     case 8:
-      return "setembro";
+      monthName = "setembro"; break;
     case 9:
-      return "outubro";
+      monthName = "outubro"; break;
     case 10:
-      return "novembro";
+      monthName = "novembro"; break;
     case 11:
-      return "dezembro";
-
-    default:
-      break;
+      monthName = "dezembro"; break;
   }
   switch (dayWeek) {
     case 0:
-      dayName = "Domingo";
-
+      dayName = "Domingo"; break;
     case 1:
-      dayName = "Segunda-feira";
-
+      dayName = "Segunda-feira"; break;
     case 2:
-      return "Terça-feira";
-
+      dayName = "Terça-feira"; break;
     case 3:
-      dayName = "Quarta-feira";
-
+      dayName = "Quarta-feira"; break;
     case 4:
-      dayName = "Quinta-feira";
-
+      dayName = "Quinta-feira"; break;
     case 5:
-      dayName = "Sexta-feira";
-
+      dayName = "Sexta-feira"; break;
     case 6:
-      dayName = "Sábado";
-
-    default:
-      break;
+      dayName = "Sábado"; break;
   }
 
-return `${dayWeek}, ${day} de ${month} de ${year} ${hours}:${minutes}`
+return `${dayName}, ${day} de ${monthName} de ${year} ${hours}:${minutes}`
 
 }
 
