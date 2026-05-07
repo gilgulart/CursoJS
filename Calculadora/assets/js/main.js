@@ -1,87 +1,64 @@
-function criaCalculadora() {
-  return {
-    display: document.querySelector('.display'),
+function Calculator() {
+  this.display = document.querySelector('.display');
 
-    inicia() {
-      this.cliqueBotoes();
-      this.pressionaBackSpace();
-      this.pressionaEnter();
-    },
+  this.init = () => {
+    if (!isNaN(this.display.value) | this.display.value === 0) {
+      this.getClick();
+      this.getEnter();
+      
+    }
+  }
 
-    pressionaBackSpace() {
-      this.display.addEventListener('keydown', e => {
-        if (e.keyCode === 8) {
-          e.preventDefault();
-          this.clearDisplay();
-        }
-      });
-    },
+  
+  this.getClick = () => {
+    document.addEventListener('click', (e) => {
+      const el = e.target;
+      if (el.classList.contains('btn')) this.addNumDisplay(el)
+      if (el.classList.contains('btn-del')) this.del()
+      if (el.classList.contains('btn-clear')) this.clear()
+      if (el.classList.contains('btn-eq')) this.calculate()
 
-    pressionaEnter() {
-      this.display.addEventListener('keyup', e => {
-        if (e.keyCode === 13) {
-          this.realizaConta();
-        }
-      });
-    },
+    })
+  }
 
-    realizaConta() {
-      let conta = this.display.value;
+  this.getEnter = () => {
+    document.addEventListener('keydown', (e) => {
+      console.log(e.key);
+      
+      if (e.key === 'Enter' ) this.calculate();
+      if (!isNaN(e.key) | e.key === '.') {
+        this.display.focus();
+      }
+        
+      if (e.key === 'Delete' | e.key === 'Backspace') this.clear();
+    });
+  };
 
-      try {
-        conta = eval(conta);
+  this.addNumDisplay = (el) => {
+    this.display.value += el.innerText;
+    this.display.focus();
+  }
+    
+  this.clear = () => this.display.value = '';
+  this.del = () => this.display.value = this.display.value.slice(0,-1);
+  
+  this.calculate = () => {
+    try {
+      const count = eval(this.display.value);
 
-        if(!conta) {
-          alert('Conta inválida');
-          return;
-        }
-
-        this.display.value = String(conta);
-      } catch(e) {
+      if (!count){ 
         alert('Conta inválida');
         return;
       }
-    },
 
-    clearDisplay() {
-      this.display.value = '';
-    },
-
-    apagaUm() {
-      this.display.value = this.display.value.slice(0, -1);
-    },
-
-
-    cliqueBotoes() {
-      document.addEventListener('click', e => {
-        const el = e.target;
-
-        if(el.classList.contains('btn')) {
-          this.btnParaDisplay(el.innerText);
-        }
-
-        if(el.classList.contains('btn-clear')) {
-          this.clearDisplay();
-        }
-
-        if(el.classList.contains('btn-del')) {
-          this.apagaUm();
-        }
-
-        if(el.classList.contains('btn-eq')) {
-          this.realizaConta();
-        }
-
-        this.display.focus();
-      });
-    },
-
-    btnParaDisplay(valor) {
-      this.display.value += valor;
+      this.display.value = String(count);
+    } catch (error) {
+      alert('Conta inválida');
+      return;
+      
     }
-
-  };
+  }
 }
 
-const calculadora = criaCalculadora();
-calculadora.inicia();
+const calculator = new Calculator();
+calculator.init();
