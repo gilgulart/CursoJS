@@ -23,8 +23,15 @@ const pessoas = [
 const names = pessoas.map(obj => obj.nome)
 console.log(names);
 
-const ages = pessoas.map(obj => {idade: obj.idade})
+const ages = pessoas.map(obj => ({idade: obj.idade}))
 console.log(ages);
 
-const idObj = pessoas.map(obj => {id: obj.id} )
+const idObj = pessoas.map((obj, index) => {
+    const newObj = {...obj};
+    newObj.id = (index + 1) * 1000;
+    return newObj;
+})
+
+
+console.log(pessoas);
 console.log(idObj);
