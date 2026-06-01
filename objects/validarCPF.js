@@ -42,7 +42,7 @@ function verifyDigit(sum) {
 
 }
 
-function sumArray(array) {return array.reduce((sum, value) => sum + Number(value))};
+function sumArray(array) {return array.reduce((sum, value) => sum + Number(value), 0)};
 
 
 const firstProducts = cpfArray.map(function(value, index) {
