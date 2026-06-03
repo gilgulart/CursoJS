@@ -38,11 +38,11 @@ class VerifyingCPF {
 
 }
 
-let cpf = new VerifyingCPF('070.987.720-03')
+// let cpf = new VerifyingCPF('070.987.720-03')
 
-if (cpf.verify()){
-    console.log('CPF válido');
-} else {
-    console.log('CPF inválido');
+// if (cpf.verify()){
+//     console.log('CPF válido');
+// } else {
+//     console.log('CPF inválido');
     
-}
+// }
