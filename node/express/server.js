@@ -1,14 +1,26 @@
 const express = require('express');
 const app = express();
 
-// CRUD -> create read update delete
-//          post  get   put   delete
+app.use(express.urlencoded({extended: true}))
 
 app.get('/', (req, res) => {
-    res.send('Hello world!');
+    res.send(`<form action='/'method = 'POST'>
+        Nome do cliente: <input type = 'text' name = 'nome'></input>
+        <button>Olá mundo</button>
+    </form>`);
 });
 
-app.get('/contato', (req, res) => {res.send('Obrigado por entrar em contato')});
+app.get('/testes/:idUsuarios', (req, res) => {
+    console.log(req.params);
+    console.log(req.query);
+
+    res.send(req.params);
+});
+
+app.post('/' , (req, res) => {
+    console.log(req.body)
+    res.send(`o que você me enviou foi: ${req.body.nome}`)
+})
 
 app.listen(3000, () => {
     console.log('Acessar http://localhost:3000');
