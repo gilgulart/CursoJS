@@ -19,20 +19,22 @@ mongoose
   });
 
 const session = require("express-session");
-const MongoStore = require("connect-mongo")(session);
+const MongoStore = require("connect-mongo");
 const flash = require("connect-flash");
-
 const routes = require("./routes");
 const path = require("path");
-const myMiddleware = require("./src/middlewares/middleware.js");
+const helmet = require('helmet');
+const csrf = require('csurf');
+const { middlewareGlobal, checkCsrfError, csrfMiddleware } = require("./src/middlewares/middleware.js");
+
 
 app.use(express.urlencoded({ extended: true }));
-
+app.use(express.json());
 app.use(express.static(path.resolve(__dirname, "public")));
 
 const sessionOptions = session({
     secret: "qualquer coisa",
-    store: new MongoStore({mongooseConnection: mongoose.connection}),
+    store: MongoStore.default.create({ mongoUrl: process.env.CONNECTIONSTRING }),
     resave: false,
     saveUninitialized: false,
     cookie: {
@@ -44,11 +46,15 @@ const sessionOptions = session({
 
 app.use(sessionOptions);
 app.use(flash());
+app.use(csrf());
 
 app.set("views", path.resolve(__dirname, "src", "views"));
 app.set("view engine", "ejs");
 
-app.use(myMiddleware);
+app.use(helmet);
+app.use(middlewareGlobal);
+app.use(checkCsrfError);
+app.use(csrfMiddleware);
 app.use(routes);
 
 app.on("pronto", () => {
